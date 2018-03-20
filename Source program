@@ -1,0 +1,63 @@
+#include "stdafx.h"
+#include<iostream>
+#include<string>
+#include<algorithm>
+
+using namespace std;
+
+class Complex
+{
+public:
+	static friend ostream &operator << (ostream& os, const Complex& c2);
+	Complex(double r = 0.0, double i = 0.0) :real(r), imag(i) {};
+	Complex operator+ (const Complex& c2) const;
+	Complex operator- (const Complex& c2) const;
+	Complex operator* (const Complex& c2) const;
+	Complex operator/ (const Complex& c2) const;
+	
+
+private:
+	double real;
+	double imag;
+};
+
+int main()
+{
+	double real, imag;
+	cin >> real >> imag;
+	Complex c1(real, imag);
+	cin >> real >> imag;
+	Complex c2(real, imag);
+	cout << c1 + c2;
+	cout << c1 - c2;
+	cout << c1 * c2;
+	cout << c1 / c2;
+	system("pause");
+    return 0;
+}
+
+Complex Complex::operator+(const Complex & c2) const
+{
+	return Complex(real+c2.real, imag+c2.imag);
+}
+
+Complex Complex::operator-(const Complex & c2) const
+{
+	return Complex(real-c2.real, imag-c2.imag);
+}
+
+Complex Complex::operator*(const Complex & c2) const
+{
+	return Complex(real*c2.real, imag*c2.imag);
+}
+
+Complex Complex::operator/(const Complex & c2) const
+{
+	return Complex(real/c2.real, imag/c2.imag);
+}
+
+ostream &operator<<(ostream & out,const Complex & c2)
+{
+	out << c2.real << "." << c2.imag;
+	return out;
+}
